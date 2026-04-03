@@ -16,7 +16,7 @@ a {
 ========================= */
 .app-shell {
   width: 100%;
-  max-width: 480px; // スマホ幅
+  max-width: 480px;
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
@@ -37,6 +37,7 @@ a {
 
   .nav-link {
     color: #555;
+    font-size: 0.95rem;
     padding-top: 8px;
     padding-bottom: 8px;
 
@@ -57,7 +58,6 @@ a {
 .app-main {
   padding-top: 20px;
   padding-bottom: 24px;
-  min-height: calc(100vh - 140px);
 }
 
 /* =========================
@@ -110,13 +110,21 @@ select {
 .app-footer {
   margin-top: 32px;
 
-  a {
-    color: #777;
+  .footer-links {
+    a {
+      color: #777;
+      font-size: 0.95rem;
 
-    &:hover {
-      color: #f97316;
-      text-decoration: underline;
+      &:hover {
+        color: #f97316;
+        text-decoration: underline;
+      }
     }
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: #999;
   }
 }
 
@@ -136,6 +144,16 @@ select {
   .navbar {
     .navbar-brand {
       font-size: 1.25rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+    }
+  }
+
+  .app-footer {
+    .footer-links a {
+      font-size: 0.95rem;
     }
   }
 }
