@@ -1,0 +1,116 @@
+/* =========================
+  Users Show Page
+========================= */
+
+.mypage-profile-row {
+  margin-bottom: 10px;
+  font-size: 0.86rem;
+  color: #3d352d;
+  line-height: 1.7;
+}
+
+.mypage-profile-row:last-child {
+  margin-bottom: 0;
+}
+
+.mypage-label {
+  font-weight: 700;
+}
+
+.mypage-value {
+  word-break: break-word;
+}
+
+.mypage-edit-link {
+  margin-left: 8px;
+}
+
+.mypage-progress-card {
+  background-color: #f6efdf;
+  border: 1px solid #8f877c;
+  padding: 12px;
+}
+
+.mypage-progress-title {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #3d352d;
+}
+
+.mypage-progress-text {
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+  color: #3d352d;
+}
+
+.mypage-progress-bar {
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: #d8d1c3;
+}
+
+.mypage-progress-fill {
+  height: 100%;
+  width: 33%;
+  background-color: #f08a24;
+  border-radius: 9999px;
+}
+
+.mypage-shop-card {
+  display: flex;
+  gap: 10px;
+  background-color: #ffffff;
+  border: 1px solid #8f877c;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.mypage-shop-card:last-child {
+  margin-bottom: 0;
+}
+
+.mypage-shop-image {
+  flex-shrink: 0;
+  width: 110px;
+  height: 78px;
+  background-color: #d9d9d9;
+  overflow: hidden;
+}
+
+.mypage-shop-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mypage-shop-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mypage-shop-title {
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #3d352d;
+}
+
+.mypage-shop-meta {
+  margin-bottom: 2px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #3d352d;
+}
+
+.mypage-shop-link-wrap {
+  text-align: right;
+  margin-top: 4px;
+}
+
+.mypage-shop-link {
+  font-size: 0.72rem;
+}
