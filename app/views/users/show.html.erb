@@ -1,0 +1,96 @@
+<div class="page-bg">
+  <div class="mobile-page-container">
+    <section class="page-section">
+      <div class="section-title-box">
+        <h1 class="section-title-text">マイページ</h1>
+      </div>
+
+      <div class="info-card">
+        <div class="mypage-profile-row">
+          <span class="mypage-label">名前：</span>
+          <span class="mypage-value"><%= @user.name %></span>
+        </div>
+
+        <div class="mypage-profile-row">
+          <span class="mypage-label">メールアドレス：</span>
+          <span class="mypage-value"><%= @user.email %></span>
+        </div>
+
+        <div class="mypage-profile-row">
+          <span class="mypage-label">パスワード：</span>
+          <span class="mypage-value">********</span>
+          <%= link_to "プロフィール編集", "#", class: "common-link mypage-edit-link" %>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="mypage-progress-card">
+        <p class="mypage-progress-title">📊 スタンプ進捗</p>
+        <p class="mypage-progress-text">訪問数：8店</p>
+        <p class="mypage-progress-text">エリア内達成率：33%</p>
+
+        <div class="mypage-progress-bar">
+          <div class="mypage-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-title-box">
+        <h2 class="section-title-text">最近行ったお店</h2>
+      </div>
+
+      <div class="mypage-shop-card">
+        <div class="mypage-shop-image">
+          <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=800&q=80" alt="店舗画像">
+        </div>
+
+        <div class="mypage-shop-body">
+          <p class="mypage-shop-title">タイトル</p>
+          <p class="mypage-shop-meta">エリア：人形町</p>
+          <p class="mypage-shop-meta">ジャンル：イタリアン</p>
+          <p class="mypage-shop-meta">予算：¥1,000〜1,999</p>
+
+          <div class="mypage-shop-link-wrap">
+            <%= link_to "詳細", "#", class: "common-link mypage-shop-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mypage-shop-card">
+        <div class="mypage-shop-image">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80" alt="店舗画像">
+        </div>
+
+        <div class="mypage-shop-body">
+          <p class="mypage-shop-title">タイトル</p>
+          <p class="mypage-shop-meta">エリア：人形町</p>
+          <p class="mypage-shop-meta">ジャンル：和食</p>
+          <p class="mypage-shop-meta">予算：¥1,000〜1,999</p>
+
+          <div class="mypage-shop-link-wrap">
+            <%= link_to "詳細", "#", class: "common-link mypage-shop-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mypage-shop-card">
+        <div class="mypage-shop-image">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="店舗画像">
+        </div>
+
+        <div class="mypage-shop-body">
+          <p class="mypage-shop-title">タイトル</p>
+          <p class="mypage-shop-meta">エリア：人形町</p>
+          <p class="mypage-shop-meta">ジャンル：カフェ</p>
+          <p class="mypage-shop-meta">予算：¥1,000〜1,999</p>
+
+          <div class="mypage-shop-link-wrap">
+            <%= link_to "詳細", "#", class: "common-link mypage-shop-link" %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
