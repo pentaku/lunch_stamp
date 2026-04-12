@@ -28,148 +28,55 @@ a {
 }
 
 /* =========================
-  ヘッダー
+  共通ページスタイル
 ========================= */
-.navbar {
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  .navbar-brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-
-  .nav-link {
-    color: #555;
-    font-size: 0.95rem;
-    padding-top: 8px;
-    padding-bottom: 8px;
-
-    &:hover {
-      color: #f97316;
-    }
-  }
-
-  .navbar-toggler {
-    border: none;
-    box-shadow: none;
-  }
+.page-bg {
+  background-color: #f6efdf;
+  min-height: 100vh;
+  padding-top: 16px;
+  padding-bottom: 32px;
 }
 
-/* =========================
-  メインエリア
-========================= */
-.app-main {
-  padding-top: 20px;
-  padding-bottom: 24px;
-}
-
-/* =========================
-  ボタン
-========================= */
-.btn-warning {
-  background-color: #f97316;
-  border: none;
-
-  &:hover {
-    background-color: #ea580c;
-  }
-}
-
-/* =========================
-  カード（トップページ）
-========================= */
-.card {
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-/* =========================
-  ヒーローテキスト
-========================= */
-.hero-text {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
-}
-
-/* =========================
-  フォーム
-========================= */
-.form-control {
-  border-radius: 10px;
-  padding: 10px 12px;
-}
-
-input,
-textarea,
-select {
-  &:focus {
-    box-shadow: 0 0 0 0.15rem rgba(249, 115, 22, 0.25);
-    border-color: #f97316;
-  }
-}
-
-/* =========================
-  フッター
-========================= */
-.app-footer {
-  margin-top: 32px;
-
-  .footer-links {
-    a {
-      color: #777;
-      font-size: 0.95rem;
-
-      &:hover {
-        color: #f97316;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .footer-copy {
-    font-size: 0.78rem;
-    color: #999;
-  }
-}
-
-/* =========================
-  PC対応（後から拡張）
-========================= */
-@media (min-width: 768px) {
-  .app-shell {
-    max-width: 720px;
-  }
-
-  .app-main {
-    padding-top: 32px;
-    padding-bottom: 40px;
-  }
-
-  .navbar {
-    .navbar-brand {
-      font-size: 1.25rem;
-    }
-
-    .nav-link {
-      font-size: 0.95rem;
-    }
-  }
-
-  .app-footer {
-    .footer-links a {
-      font-size: 0.95rem;
-    }
-  }
-}
-
-/* =========================
-  miscellaneous
-========================= */
-
-.debug_dump {
-  clear: both;
-  float: left;
+.mobile-page-container {
   width: 100%;
-  margin-top: 45px;
+  max-width: 420px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.page-section {
+  margin-bottom: 16px;
+}
+
+.section-title-box {
+  background-color: #f6efdf;
+  border-top: 1px solid #8f877c;
+  border-bottom: 1px solid #8f877c;
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.section-title-text {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3d352d;
+}
+
+.info-card {
+  background-color: #f6efdf;
+  border: 1px solid #8f877c;
+  border-top: none;
+  padding: 14px 12px;
+}
+
+.common-link {
+  color: #f08a24;
+  font-size: 0.8rem;
+}
+
+.common-link:hover {
+  color: #d9740f;
+  text-decoration: underline;
 }
