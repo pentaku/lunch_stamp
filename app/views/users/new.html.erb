@@ -6,6 +6,7 @@
 
     <div class="signup-form-card">
       <%= form_with model: @user, class: "signup-form" do |f| %>
+        <%= render 'shared/error_messages' %>
 
         <div class="signup-form-group">
           <%= f.label :name, "ユーザー名", class: "signup-form-label" %>
