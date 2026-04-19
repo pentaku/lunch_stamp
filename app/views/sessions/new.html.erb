@@ -1,2 +1,45 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% provide(:title, "ログイン") %>
+
+<div class="login-page-bg">
+  <div class="login-page-container">
+    <div class="login-title-box">
+      <h1 class="login-title-text">ログイン</h1>
+    </div>
+
+    <div class="login-form-card">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %> login-alert">
+          <%= message %>
+        </div>
+      <% end %>
+
+      <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+        <div class="login-form-group">
+          <%= f.label :email, "メールアドレスを入力してください", class: "login-form-label" %>
+          <div class="login-input-wrap">
+            <%= f.email_field :email,
+                              class: "login-form-input",
+                              placeholder: "email@email.com",
+                              autocomplete: "email" %>
+            <span class="login-input-icon">✉</span>
+          </div>
+        </div>
+
+        <div class="login-form-group">
+          <%= f.label :password, "パスワードを入力してください", class: "login-form-label" %>
+          <div class="login-input-wrap">
+            <%= f.password_field :password,
+                                 class: "login-form-input",
+                                 placeholder: "************",
+                                 autocomplete: "current-password" %>
+            <span class="login-input-icon">🔑</span>
+          </div>
+        </div>
+
+        <div class="login-submit-wrap">
+          <%= f.submit "ログイン", class: "login-submit-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
