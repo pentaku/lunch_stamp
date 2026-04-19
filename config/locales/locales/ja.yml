@@ -7,6 +7,7 @@ ja:
       too_long: "は%{count}文字以内で入力してください"
       taken: "はすでに存在します"
       invalid: "は不正な値です"
+      confirmation: "が一致しません"
 
   activerecord:
     attributes:
