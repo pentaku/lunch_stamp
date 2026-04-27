@@ -114,6 +114,19 @@
   border: 2px solid red;
 }
 
+.login-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  font-size: 0.72rem;
+  color: #6c6258;
+}
+
+.login-remember input[type="checkbox"] {
+  accent-color: #ff8a00;
+}
+
 @media screen and (min-width: 992px) {
   .login-page-bg {
     padding-top: 40px;

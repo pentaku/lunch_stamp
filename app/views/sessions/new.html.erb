@@ -36,6 +36,11 @@
           </div>
         </div>
 
+        <%= f.label :remember_me, class: "login-remember" do %>
+          <%= f.check_box :remember_me %>
+          <span>ログイン状態を保持する</span>
+        <% end %>
+
         <div class="login-submit-wrap">
           <%= f.submit "ログイン", class: "login-submit-button" %>
         </div>
