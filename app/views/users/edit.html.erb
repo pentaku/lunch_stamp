@@ -1,0 +1,63 @@
+<% provide(:title, "プロフィール編集") %>
+
+<div class="edit-user-page-bg">
+  <div class="edit-user-page-container">
+    <div class="edit-user-title-box">
+      <h1 class="edit-user-title-text">プロフィール編集</h1>
+    </div>
+
+    <div class="edit-user-form-card">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= render "shared/error_messages" %>
+
+        <div class="edit-user-form-group">
+          <%= f.label :name, "ユーザー名", class: "edit-user-form-label" %>
+          <div class="edit-user-input-wrap">
+            <%= f.text_field :name,
+                             class: "edit-user-form-input",
+                             placeholder: "氏名",
+                             autocomplete: "name" %>
+            <span class="edit-user-input-icon">👤</span>
+          </div>
+        </div>
+
+        <div class="edit-user-form-group">
+          <%= f.label :email, "メールアドレス", class: "edit-user-form-label" %>
+          <div class="edit-user-input-wrap">
+            <%= f.email_field :email,
+                              class: "edit-user-form-input",
+                              placeholder: "email@email.com",
+                              autocomplete: "email" %>
+            <span class="edit-user-input-icon">✉</span>
+          </div>
+        </div>
+
+        <div class="edit-user-form-group">
+          <%= f.label :password, "新パスワード", class: "edit-user-form-label" %>
+          <div class="edit-user-input-wrap">
+            <%= f.password_field :password,
+                                 class: "edit-user-form-input",
+                                 placeholder: "************",
+                                 autocomplete: "new-password" %>
+            <span class="edit-user-input-icon">🔑</span>
+          </div>
+        </div>
+
+        <div class="edit-user-form-group">
+          <%= f.label :password_confirmation, "確認用パスワード", class: "edit-user-form-label" %>
+          <div class="edit-user-input-wrap">
+            <%= f.password_field :password_confirmation,
+                                 class: "edit-user-form-input",
+                                 placeholder: "************",
+                                 autocomplete: "new-password" %>
+            <span class="edit-user-input-icon">🔒</span>
+          </div>
+        </div>
+
+        <div class="edit-user-submit-wrap">
+          <%= f.submit "更新する", class: "edit-user-submit-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
