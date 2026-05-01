@@ -1,0 +1,15 @@
+<h1>Lunch Stamp</h1>
+
+<p><%= @user.name %>さん</p>
+
+<p>
+Lunch Stampへようこそ！
+</p>
+
+<p>
+以下のボタンをクリックして、アカウントを有効化してください。
+</p>
+
+<%= link_to "アカウントを有効化する",
+            edit_account_activation_url(@user.activation_token,
+                                        email: @user.email) %>
