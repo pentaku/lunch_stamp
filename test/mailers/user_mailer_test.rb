@@ -10,7 +10,7 @@ class UserMailerTest < ActionMailer::TestCase
 
     assert_equal "【Lunch Stamp】アカウント有効化のご案内", mail.subject
     assert_equal [user.email], mail.to
-    assert_equal ["user@realdomain.com"], mail.from
+    assert_equal ["ohara1728136@gmail.com"], mail.from
     assert_match user.name, body
     assert_match user.activation_token, body
     assert_match CGI.escape(user.email), body
