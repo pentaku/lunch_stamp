@@ -1,2 +1,45 @@
-<h1>PasswordResets#new</h1>
-<p>Find me in app/views/password_resets/new.html.erb</p>
+<% provide(:title, "パスワード再設定") %>
+
+<div class="login-page-bg">
+  <div class="login-page-container">
+    <div class="login-title-box">
+      <h1 class="login-title-text">パスワード再設定</h1>
+    </div>
+
+    <div class="login-form-card">
+      <p class="login-description-text">
+        登録済みのメールアドレスを入力してください。<br>
+        パスワード再設定用のメールを送信します。
+      </p>
+
+      <% if flash.now[:danger] %>
+        <div class="alert alert-danger login-alert">
+          <%= flash.now[:danger] %>
+        </div>
+      <% end %>
+
+      <%= form_with(url: password_resets_path, scope: :password_reset) do |f| %>
+
+        <div class="login-form-group">
+          <%= f.label :email, "メールアドレス", class: "login-form-label" %>
+
+          <div class="login-input-wrap">
+            <%= f.email_field :email,
+                              class: "login-form-input",
+                              placeholder: "email@email.com" %>
+            <span class="login-input-icon">✉</span>
+          </div>
+        </div>
+
+        <div class="login-submit-wrap">
+          <%= f.submit "送信する", class: "login-submit-button" %>
+        </div>
+
+      <% end %>
+
+      <div class="login-forgot-password" style="margin-top: 12px; text-align: center;">
+        <%= link_to "ログイン画面に戻る", login_path %>
+      </div>
+    </div>
+  </div>
+</div>
