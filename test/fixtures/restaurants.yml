@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hotpepper_id: MyString
+  name: MyString
+  address: MyString
+  genre: MyString
+  area: MyString
+  budget: MyString
+  photo_url: MyString
+  url: MyString
+
+two:
+  hotpepper_id: MyString
+  name: MyString
+  address: MyString
+  genre: MyString
+  area: MyString
+  budget: MyString
+  photo_url: MyString
+  url: MyString
