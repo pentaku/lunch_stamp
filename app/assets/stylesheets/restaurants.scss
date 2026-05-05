@@ -1,0 +1,160 @@
+/* =========================
+  店舗一覧ページ
+========================= */
+
+.restaurants-page-bg {
+  background-color: #f6efdf;
+  min-height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.restaurants-page-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.restaurants-title-box {
+  background-color: #f6efdf;
+  border-top: 1px solid #8f877c;
+  border-bottom: 1px solid #8f877c;
+  text-align: center;
+  padding: 14px 8px;
+  margin-bottom: 20px;
+}
+
+.restaurants-title-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3d352d;
+}
+
+.restaurants-search-wrap {
+  margin-bottom: 12px;
+}
+
+.restaurants-search-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  font-size: 0.82rem;
+  color: #333333;
+  outline: none;
+}
+
+.restaurants-search-input::placeholder {
+  color: #b0b0b0;
+}
+
+.restaurants-search-input:focus {
+  border: 1px solid #f08a24;
+}
+
+.restaurants-filter-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.restaurants-filter-select {
+  flex: 1;
+  height: 42px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  font-size: 0.82rem;
+  color: #555;
+  outline: none;
+}
+
+.restaurants-submit-button {
+  width: 100%;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff8a00;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.restaurants-submit-button:hover {
+  background-color: #e67c00;
+}
+
+.restaurants-result-count {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.restaurants-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid #e8e0d0;
+}
+
+.restaurants-card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.restaurants-card-body {
+  padding: 12px 14px 16px;
+}
+
+.restaurants-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3d352d;
+  margin-bottom: 4px;
+}
+
+.restaurants-card-meta {
+  font-size: 0.78rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.restaurants-card-budget {
+  font-size: 0.78rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.restaurants-card-link {
+  font-size: 0.78rem;
+  color: #f08a24;
+  border: 1px solid #f08a24;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.restaurants-card-link:hover {
+  background-color: #f08a24;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 992px) {
+  .restaurants-page-bg {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+
+  .restaurants-page-container {
+    max-width: 520px;
+  }
+}

@@ -1,2 +1,80 @@
-<h1>Restaurants#index</h1>
-<p>Find me in app/views/restaurants/index.html.erb</p>
+<div class="restaurants-page-bg">
+  <div class="restaurants-page-container">
+
+    <%# タイトル %>
+    <div class="restaurants-title-box">
+      <p class="restaurants-title-text">店舗一覧</p>
+    </div>
+
+    <%# 検索・フィルターフォーム %>
+    <%= form_with url: restaurants_path, method: :get, local: true do |f| %>
+      <div class="restaurants-search-wrap">
+        <%= f.text_field :keyword,
+            value: params[:keyword],
+            placeholder: "キーワードで検索（例：渋谷 ランチ）",
+            class: "restaurants-search-input" %>
+      </div>
+      <div class="restaurants-filter-wrap">
+        <%= f.select :genre,
+            options_for_select([
+              ["ジャンル（すべて）", ""],
+              ["和食", "和食"],
+              ["洋食", "洋食"],
+              ["イタリアン", "イタリアン"],
+              ["中華", "中華"],
+              ["焼肉", "焼肉"],
+              ["ラーメン", "ラーメン"],
+              ["カフェ", "カフェ"],
+              ["その他", "その他"]
+            ], params[:genre]),
+            {},
+            class: "restaurants-filter-select" %>
+        <%= f.select :budget,
+            options_for_select([
+              ["予算（すべて）", ""],
+              ["〜500円",   "B009"],
+              ["〜1000円",  "B010"],
+              ["〜1500円",  "B011"],
+              ["〜2000円",  "B001"],
+              ["〜3000円",  "B002"],
+              ["〜4000円",  "B003"],
+              ["〜5000円",  "B008"],
+            ], params[:budget]),
+            {},
+            class: "restaurants-filter-select" %>
+      </div>
+      <%= f.submit "検索", class: "restaurants-submit-button" %>
+    <% end %>
+
+    <%# 検索結果 %>
+    <% if @restaurants.any? %>
+      <p class="restaurants-result-count"><%= @restaurants.size %>件見つかりました</p>
+      <% @restaurants.each do |shop| %>
+        <div class="restaurants-card">
+          <% if shop["photo"]["mobile"]["l"].present? %>
+            <img src="<%= shop["photo"]["mobile"]["l"] %>"
+                 class="restaurants-card-img"
+                 alt="<%= shop["name"] %>">
+          <% end %>
+          <div class="restaurants-card-body">
+            <p class="restaurants-card-name"><%= shop["name"] %></p>
+            <p class="restaurants-card-meta">
+              <%= shop["genre"]["name"] %> ／ <%= shop["address"] %>
+            </p>
+            <p class="restaurants-card-budget">
+              予算：<%= shop["budget"]["average"].presence || "情報なし" %>
+            </p>
+            <a href="<%= shop["urls"]["pc"] %>"
+               target="_blank"
+               class="restaurants-card-link">
+              ホットペッパーで見る
+            </a>
+          </div>
+        </div>
+      <% end %>
+    <% elsif params[:keyword].present? || params[:genre].present? || params[:budget].present? %>
+      <p class="restaurants-result-count">お店が見つかりませんでした。</p>
+    <% end %>
+
+  </div>
+</div>

@@ -1,5 +1,10 @@
 class RestaurantsController < ApplicationController
   def index
+    if params[:keyword].present?
+      @restaurants = HotpepperService.search(params[:keyword])
+    else
+      @restaurants = []
+    end
   end
 
   def new
