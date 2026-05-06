@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_03_222235) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_06_024046) do
   create_table "restaurants", force: :cascade do |t|
     t.string "hotpepper_id"
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_03_222235) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["hotpepper_id"], name: "index_restaurants_on_hotpepper_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
