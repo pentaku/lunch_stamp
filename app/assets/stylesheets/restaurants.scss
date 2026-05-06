@@ -145,6 +145,12 @@
   text-decoration: none;
 }
 
+.restaurants-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .restaurants-card-link:hover {
   background-color: #f08a24;
   color: #ffffff;
