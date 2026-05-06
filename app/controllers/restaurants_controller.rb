@@ -1,7 +1,11 @@
 class RestaurantsController < ApplicationController
   def index
-    if params[:keyword].present?
-      @restaurants = HotpepperService.search(params[:keyword])
+    if params[:keyword].present? || params[:genre].present? || params[:budget].present?
+      @restaurants = HotpepperService.search(
+        keyword: params[:keyword].to_s,
+        genre:   params[:genre].to_s,
+        budget:  params[:budget].to_s
+      )
     else
       @restaurants = []
     end

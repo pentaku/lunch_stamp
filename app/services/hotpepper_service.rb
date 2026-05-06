@@ -4,17 +4,27 @@ require "json"
 class HotpepperService
   API_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/"
 
-  def self.search(keyword)
+  def self.search(keyword: "", genre: "", budget: "")
     uri = URI(API_URL)
-    uri.query = URI.encode_www_form(
-      key:     Rails.application.credentials.hotpepper[:api_key],
-      keyword: keyword,
-      format:  "json",
-      count:   20
-    )
+    params = {
+      key:    Rails.application.credentials.hotpepper[:api_key],
+      format: "json",
+      count:  20
+    }
+    params[:keyword] = keyword if keyword.present?
+    params[:keyword] = keyword.gsub("　", " ") if keyword.present?
+    params[:genre]   = genre   if genre.present?
+    params[:budget]  = budget  if budget.present?
+
+    uri.query = URI.encode_www_form(params)
 
     begin
-      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true, open_timeout: 5, read_timeout: 5) do |http|
+      response = Net::HTTP.start(uri.host, uri.port,
+        use_ssl: true,
+        open_timeout: 5,
+        read_timeout: 5,
+        verify_mode: Rails.env.production? ? OpenSSL::SSL::VERIFY_PEER : OpenSSL::SSL::VERIFY_NONE
+      ) do |http|
         http.get(uri.request_uri)
       end
       return [] unless response.is_a?(Net::HTTPSuccess)
