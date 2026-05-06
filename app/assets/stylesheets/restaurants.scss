@@ -136,17 +136,69 @@
 }
 
 .restaurants-card-link {
+  display: inline-block;
   font-size: 0.78rem;
   color: #f08a24;
   border: 1px solid #f08a24;
   border-radius: 6px;
   padding: 4px 10px;
+  text-decoration: none;
 }
 
 .restaurants-card-link:hover {
   background-color: #f08a24;
   color: #ffffff;
 }
+
+/* =========================
+  店舗詳細ページ
+========================= */
+
+.restaurants-show-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.restaurants-show-info {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #e8e0d0;
+}
+
+.restaurants-show-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0e8d8;
+  font-size: 0.85rem;
+}
+
+.restaurants-show-row:last-child {
+  border-bottom: none;
+}
+
+.restaurants-show-label {
+  color: #888;
+  font-weight: 600;
+}
+
+.restaurants-show-value {
+  color: #3d352d;
+  text-align: right;
+}
+
+.restaurants-show-action {
+  margin-bottom: 16px;
+}
+
+/* =========================
+  PC表示
+========================= */
 
 @media screen and (min-width: 992px) {
   .restaurants-page-bg {

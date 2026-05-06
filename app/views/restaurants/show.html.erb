@@ -1,2 +1,52 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<div class="restaurants-page-bg">
+  <div class="restaurants-page-container">
+
+    <% if @shop.dig("photo", "mobile", "l").present? %>
+      <img src="<%= @shop.dig("photo", "mobile", "l") %>"
+           class="restaurants-show-img"
+           alt="<%= @shop["name"] %>">
+    <% end %>
+
+    <div class="restaurants-title-box">
+      <p class="restaurants-title-text"><%= @shop["name"] %></p>
+    </div>
+
+    <div class="restaurants-show-info">
+      <div class="restaurants-show-row">
+        <span class="restaurants-show-label">エリア</span>
+        <span class="restaurants-show-value"><%= @shop.dig("large_area", "name") || "情報なし" %></span>
+      </div>
+
+      <div class="restaurants-show-row">
+        <span class="restaurants-show-label">ジャンル</span>
+        <span class="restaurants-show-value"><%= @shop.dig("genre", "name") || "情報なし" %></span>
+      </div>
+
+      <div class="restaurants-show-row">
+        <span class="restaurants-show-label">住所</span>
+        <span class="restaurants-show-value"><%= @shop["address"].presence || "情報なし" %></span>
+      </div>
+
+      <div class="restaurants-show-row">
+        <span class="restaurants-show-label">予算</span>
+        <span class="restaurants-show-value"><%= @shop.dig("budget", "average").presence || "情報なし" %></span>
+      </div>
+    </div>
+
+    <div class="restaurants-show-action">
+      <button class="restaurants-submit-button">訪問済みにする</button>
+    </div>
+
+    <% if @shop.dig("urls", "pc").present? %>
+      <div class="text-center mt-3">
+        <a href="<%= @shop.dig("urls", "pc") %>"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="restaurants-card-link">
+          ホットペッパーで見る
+        </a>
+      </div>
+    <% end %>
+
+  </div>
+</div>
