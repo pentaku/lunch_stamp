@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_06_024046) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_06_065456) do
   create_table "restaurants", force: :cascade do |t|
     t.string "hotpepper_id"
     t.string "name"
@@ -40,4 +40,17 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_06_024046) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
+    t.date "visited_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_visits_on_restaurant_id"
+    t.index ["user_id", "restaurant_id"], name: "index_visits_on_user_id_and_restaurant_id", unique: true
+    t.index ["user_id"], name: "index_visits_on_user_id"
+  end
+
+  add_foreign_key "visits", "restaurants"
+  add_foreign_key "visits", "users"
 end
