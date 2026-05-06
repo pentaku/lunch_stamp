@@ -7,19 +7,36 @@ class HotpepperService
   def self.search(keyword: "", genre: "", budget: "")
     uri = URI(API_URL)
     params = {
-      key: Rails.application.credentials.hotpepper[:api_key],
+      key:    Rails.application.credentials.hotpepper[:api_key],
       format: "json",
-      count: 20
+      count:  20
     }
-
     params[:keyword] = keyword.gsub("　", " ") if keyword.present?
-    params[:genre] = genre if genre.present?
-    params[:budget] = budget if budget.present?
+    params[:genre]   = genre                   if genre.present?
+    params[:budget]  = budget                  if budget.present?
 
     uri.query = URI.encode_www_form(params)
+    data = fetch(uri)
+    data.dig("results", "shop") || []
+  end
 
+  def self.find(hotpepper_id)
+    uri = URI(API_URL)
+    params = {
+      key:    Rails.application.credentials.hotpepper[:api_key],
+      id:     hotpepper_id,
+      format: "json",
+      count:  1
+    }
+
+    uri.query = URI.encode_www_form(params)
+    data = fetch(uri)
+    data.dig("results", "shop")&.first
+  end
+
+  def self.fetch(uri)
     http_options = {
-      use_ssl: true,
+      use_ssl:      true,
       open_timeout: 5,
       read_timeout: 5
     }
@@ -34,12 +51,12 @@ class HotpepperService
       http.get(uri.request_uri)
     end
 
-    return [] unless response.is_a?(Net::HTTPSuccess)
-
-    data = JSON.parse(response.body)
-    data.dig("results", "shop") || []
+    return {} unless response.is_a?(Net::HTTPSuccess)
+    JSON.parse(response.body)
   rescue => e
     Rails.logger.error("[HotpepperService] API Error: #{e.message}")
-    []
+    {}
   end
+
+  private_class_method :fetch
 end

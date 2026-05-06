@@ -11,6 +11,12 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def show
+    @shop = HotpepperService.find(params[:hotpepper_id])
+    return redirect_to restaurants_path,
+          alert: "店舗情報が取得できませんでした" if @shop.blank?
+  end
+
   def new
   end
 
@@ -33,9 +39,6 @@ class RestaurantsController < ApplicationController
       redirect_back fallback_location: restaurants_path,
                     alert: "保存に失敗しました"
     end
-  end
-
-  def show
   end
 
   def edit
