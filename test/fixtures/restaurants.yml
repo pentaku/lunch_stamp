@@ -1,21 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  hotpepper_id: MyString
-  name: MyString
-  address: MyString
-  genre: MyString
-  area: MyString
-  budget: MyString
-  photo_url: MyString
-  url: MyString
+  hotpepper_id: J001234567
+  name: テスト食堂
+  address: 東京都中央区日本橋
+  genre: 和食
+  area: 人形町
+  budget: 1000円
+  photo_url: https://example.com/test1.jpg
+  url: https://example.com/restaurant1
 
 two:
-  hotpepper_id: MyString
-  name: MyString
-  address: MyString
-  genre: MyString
-  area: MyString
-  budget: MyString
-  photo_url: MyString
-  url: MyString
+  hotpepper_id: J009876543
+  name: サンプル食堂
+  address: 東京都中央区人形町
+  genre: ラーメン
+  area: 人形町
+  budget: 1200円
+  photo_url: https://example.com/test2.jpg
+  url: https://example.com/restaurant2
