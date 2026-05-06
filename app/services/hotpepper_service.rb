@@ -24,6 +24,8 @@ class HotpepperService
       read_timeout: 5
     }
 
+    # NOTE: 開発環境でSSL証明書検証エラーが発生するため一時的に無効化
+    # 本番環境ではデフォルトのVERIFY_PEERが適用される
     if Rails.env.development?
       http_options[:verify_mode] = OpenSSL::SSL::VERIFY_NONE
     end
@@ -37,7 +39,7 @@ class HotpepperService
     data = JSON.parse(response.body)
     data.dig("results", "shop") || []
   rescue => e
-    Rails.logger.error("Hotpepper API Error: #{e.message}")
+    Rails.logger.error("[HotpepperService] API Error: #{e.message}")
     []
   end
 end
