@@ -1,10 +1,9 @@
 <div class="restaurants-page-bg">
   <div class="restaurants-page-container">
-
     <% if @shop.dig("photo", "mobile", "l").present? %>
-      <img src="<%= @shop.dig("photo", "mobile", "l") %>"
-           class="restaurants-show-img"
-           alt="<%= @shop["name"] %>">
+      <%= image_tag @shop.dig("photo", "mobile", "l"),
+                    class: "restaurants-show-img",
+                    alt: @shop["name"] %>
     <% end %>
 
     <div class="restaurants-title-box">
@@ -33,20 +32,36 @@
       </div>
     </div>
 
+    <%# 訪問済みにするボタン %>
     <div class="restaurants-show-action">
-      <button class="restaurants-submit-button">訪問済みにする</button>
+      <% if logged_in? %>
+        <% if current_user.visited_restaurants.exists?(hotpepper_id: @shop["id"]) %>
+          <div class="restaurants-visited-badge">
+            ✅ 訪問済み
+          </div>
+        <% else %>
+          <%= form_with url: restaurant_visit_path(@shop["id"]),
+                        method: :post,
+                        local: true do |f| %>
+            <%= f.submit "訪問済みにする",
+                         class: "restaurants-submit-button" %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to "ログインして訪問記録する",
+                    login_path,
+                    class: "restaurants-submit-button" %>
+      <% end %>
     </div>
 
     <% if @shop.dig("urls", "pc").present? %>
       <div class="text-center mt-3">
-        <a href="<%= @shop.dig("urls", "pc") %>"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="restaurants-card-link">
-          ホットペッパーで見る
-        </a>
+        <%= link_to "ホットペッパーで見る",
+                    @shop.dig("urls", "pc"),
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    class: "restaurants-card-link" %>
       </div>
     <% end %>
-
   </div>
 </div>
