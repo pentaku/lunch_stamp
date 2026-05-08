@@ -7,13 +7,13 @@ class HotpepperService
   def self.search(keyword: "", genre: "", budget: "")
     uri = URI(API_URL)
     params = {
-      key:    Rails.application.credentials.hotpepper[:api_key],
-      format: "json",
-      count:  20
+      key:     Rails.application.credentials.hotpepper[:api_key],
+      format:  "json",
+      count:   20,
+      keyword: search_keyword(keyword)
     }
-    params[:keyword] = keyword.gsub("　", " ") if keyword.present?
-    params[:genre]   = genre                   if genre.present?
-    params[:budget]  = budget                  if budget.present?
+    params[:genre]  = genre  if genre.present?
+    params[:budget] = budget if budget.present?
 
     uri.query = URI.encode_www_form(params)
     data = fetch(uri)
@@ -32,6 +32,12 @@ class HotpepperService
     uri.query = URI.encode_www_form(params)
     data = fetch(uri)
     data.dig("results", "shop")&.first
+  end
+
+  def self.search_keyword(keyword)
+    base_keyword = "人形町"
+    return base_keyword if keyword.blank?
+    "#{base_keyword} #{keyword.gsub("　", " ")}"
   end
 
   def self.fetch(uri)
@@ -58,5 +64,5 @@ class HotpepperService
     {}
   end
 
-  private_class_method :fetch
+  private_class_method :fetch, :search_keyword
 end

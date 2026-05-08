@@ -8,12 +8,13 @@
 
     <%# 検索・フィルターフォーム %>
     <%= form_with url: restaurants_path, method: :get, local: true do |f| %>
-      <div class="restaurants-search-wrap">
-        <%= f.text_field :keyword,
-                         value: params[:keyword],
-                         placeholder: "キーワードで検索（例：渋谷 ランチ）",
-                         class: "restaurants-search-input" %>
-      </div>
+    <div class="restaurants-search-wrap">
+      <%= f.text_field :keyword,
+                        value: params[:keyword],
+                        placeholder: "人形町のお店をキーワード検索",
+                        class: "restaurants-search-input" %>
+      <p class="restaurants-search-note">人形町エリアのお店だけを検索できます</p>
+    </div>
 
       <div class="restaurants-filter-wrap">
         <%= f.select :genre,
