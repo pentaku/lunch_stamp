@@ -6,6 +6,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @visits = @user.visits.includes(:restaurant)
                           .order(visited_at: :desc)
+    @total_restaurants_count = 20
+    @visited_count           = @visits.size
+    @completion_rate         = (@visited_count.to_f / @total_restaurants_count * 100).round
   end
 
   def new

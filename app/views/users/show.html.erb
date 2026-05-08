@@ -32,10 +32,20 @@
     <%# スタンプ進捗 %>
     <section class="page-section">
       <div class="mypage-progress-card">
-        <p class="mypage-progress-title">📊 スタンプ進捗</p>
+        <p class="mypage-progress-title">📊 人形町スタンプ進捗</p>
+
         <p class="mypage-progress-text">
-          訪問数：<%= @visits.size %>店
+          訪問数：<%= @visited_count %> / <%= @total_restaurants_count %>店
         </p>
+
+        <p class="mypage-progress-text">
+          達成率：<%= @completion_rate %>%
+        </p>
+
+        <div class="mypage-progress-bar">
+          <div class="mypage-progress-fill"
+              style="width: <%= @completion_rate %>%;"></div>
+        </div>
       </div>
     </section>
 

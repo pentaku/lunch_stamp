@@ -108,3 +108,18 @@
     margin-bottom: 16px;
   }
 }
+
+.mypage-progress-bar {
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: #d8d1c3;
+  margin-top: 10px;
+}
+
+.mypage-progress-fill {
+  height: 100%;
+  background-color: #f08a24;
+  border-radius: 9999px;
+}
