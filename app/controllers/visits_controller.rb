@@ -39,4 +39,13 @@ class VisitsController < ApplicationController
     redirect_to restaurant_path(params[:restaurant_hotpepper_id]),
                 alert: "訪問記録の保存に失敗しました"
   end
+
+  def destroy
+    restaurant = Restaurant.find_by!(hotpepper_id: params[:restaurant_hotpepper_id])
+    visit = current_user.visits.find_by!(restaurant: restaurant)
+    visit.destroy
+
+    redirect_to restaurant_path(params[:restaurant_hotpepper_id]),
+                notice: "訪問済みを解除しました"
+  end
 end

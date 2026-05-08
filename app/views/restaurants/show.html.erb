@@ -36,15 +36,16 @@
     <div class="restaurants-show-action">
       <% if logged_in? %>
         <% if current_user.visited_restaurants.exists?(hotpepper_id: @shop["id"]) %>
-          <div class="restaurants-visited-badge">
-            ✅ 訪問済み
-          </div>
+          <%= button_to "✅ 訪問済み",
+                        restaurant_visit_path(@shop["id"]),
+                        method: :delete,
+                        class: "restaurants-visited-badge" %>
         <% else %>
           <%= form_with url: restaurant_visit_path(@shop["id"]),
                         method: :post,
                         local: true do |f| %>
             <%= f.submit "訪問済みにする",
-                         class: "restaurants-submit-button" %>
+                        class: "restaurants-submit-button" %>
           <% end %>
         <% end %>
       <% else %>
