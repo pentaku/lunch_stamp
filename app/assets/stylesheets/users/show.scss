@@ -1,136 +1,110 @@
 /* =========================
-  Users Show Page
+  マイページ
 ========================= */
 
 .mypage-profile-row {
-  margin-bottom: 10px;
-  font-size: 0.86rem;
-  color: #3d352d;
-  line-height: 1.7;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0e8d8;
+  font-size: 0.85rem;
 }
 
 .mypage-profile-row:last-child {
-  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .mypage-label {
-  font-weight: 700;
+  color: #888;
+  font-weight: 600;
+  min-width: 120px;
 }
 
 .mypage-value {
+  color: #3d352d;
   word-break: break-word;
 }
 
 .mypage-edit-link {
-  margin-left: 8px;
+  margin-left: auto;
 }
 
 .mypage-progress-card {
-  background-color: #f6efdf;
-  border: 1px solid #8f877c;
-  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #e8e0d0;
+  margin-bottom: 8px;
 }
 
 .mypage-progress-title {
-  margin-bottom: 8px;
   font-size: 0.9rem;
   font-weight: 700;
   color: #3d352d;
+  margin-bottom: 8px;
 }
 
 .mypage-progress-text {
-  margin-bottom: 6px;
-  font-size: 0.82rem;
-  color: #3d352d;
-}
-
-.mypage-progress-bar {
-  width: 100%;
-  height: 12px;
-  border-radius: 9999px;
-  overflow: hidden;
-  background-color: #d8d1c3;
-}
-
-.mypage-progress-fill {
-  height: 100%;
-  width: 33%;
-  background-color: #f08a24;
-  border-radius: 9999px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 4px;
 }
 
 .mypage-shop-card {
   display: flex;
-  gap: 10px;
   background-color: #ffffff;
-  border: 1px solid #8f877c;
-  padding: 8px;
+  border-radius: 10px;
+  overflow: hidden;
   margin-bottom: 12px;
-}
-
-.mypage-shop-card:last-child {
-  margin-bottom: 0;
+  border: 1px solid #e8e0d0;
 }
 
 .mypage-shop-image {
-  flex-shrink: 0;
-  width: 110px;
-  height: 78px;
-  background-color: #d9d9d9;
-  overflow: hidden;
-}
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
 
-.mypage-shop-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .mypage-shop-body {
+  padding: 10px 12px;
   flex: 1;
   min-width: 0;
 }
 
 .mypage-shop-title {
-  margin-bottom: 6px;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #3d352d;
+  margin-bottom: 4px;
 }
 
 .mypage-shop-meta {
+  font-size: 0.75rem;
+  color: #888;
   margin-bottom: 2px;
-  font-size: 0.72rem;
-  line-height: 1.5;
-  color: #3d352d;
 }
 
 .mypage-shop-link-wrap {
+  margin-top: 6px;
   text-align: right;
-  margin-top: 4px;
 }
 
 .mypage-shop-link {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
 }
 
-#error_explanation {
-  color: red;
-  font-size: 0.8rem;
-  margin-bottom: 16px;
+.mypage-empty {
+  text-align: center;
+  padding: 32px 0;
+  color: #888;
 
-  ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-}
-
-/* フィールドエラー */
-.field_with_errors {
-  display: block;
-
-  .signup-form-input {
-    border: 2px solid #ff4d4f;
+  p {
+    margin-bottom: 16px;
   }
 }

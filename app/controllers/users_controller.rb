@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @visits = @user.visits.includes(:restaurant)
+                          .order(visited_at: :desc)
   end
 
   def new
