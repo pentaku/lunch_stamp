@@ -1,0 +1,64 @@
+/* =========================
+  利用規約ページ
+========================= */
+
+.terms-card {
+  padding: 16px 14px;
+}
+
+.terms-intro {
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.terms-section {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e0d8c8;
+}
+
+.terms-section--last {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.terms-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3d352d;
+  margin-bottom: 8px;
+}
+
+.terms-text {
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.terms-list {
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.7;
+  padding-left: 18px;
+  margin: 0;
+
+  li {
+    margin-bottom: 6px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.terms-list--nested {
+  margin-top: 6px;
+}
+
+.terms-list--bullet {
+  list-style-type: disc;
+}
