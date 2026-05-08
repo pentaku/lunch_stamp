@@ -1,0 +1,132 @@
+/* =========================
+  ホームページ
+========================= */
+
+.home-page-bg {
+  background-color: #f6efdf;
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+
+/* ヒーロー画像 */
+.home-hero-img-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.home-hero-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.home-hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.62));
+}
+
+.home-hero-title {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+
+.home-hero-sub {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.72rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* CTAリンク */
+.home-cta-wrap {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 14px 12px;
+}
+
+.home-cta-link {
+  color: #f08a24;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.home-cta-link:hover {
+  color: #d9740f;
+}
+
+/* できることリスト */
+.home-feature-list {
+  padding: 0 12px;
+}
+
+.home-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0d8c8;
+}
+
+.home-feature-item--last {
+  border-bottom: none;
+}
+
+.home-feature-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.home-feature-body {
+  flex: 1;
+}
+
+.home-feature-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f08a24;
+  margin: 0 0 2px;
+}
+
+.home-feature-desc {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* PC表示 */
+@media (min-width: 992px) {
+  .home-hero-img-wrap {
+    max-width: 520px;
+  }
+
+  .home-cta-wrap {
+    max-width: 520px;
+  }
+
+  .home-hero-img {
+    height: 300px;
+  }
+
+  .home-hero-title {
+    font-size: 1.4rem;
+  }
+
+  .home-hero-sub {
+    font-size: 0.82rem;
+  }
+}

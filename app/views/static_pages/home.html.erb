@@ -1,2 +1,59 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="home-page-bg">
+
+  <%# ── ヒーロー ── %>
+  <div class="home-hero">
+    <div class="home-hero-img-wrap">
+      <%= image_tag "https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?w=480&q=80",
+              alt: "人形町のランチ",
+              class: "home-hero-img" %>
+      <div class="home-hero-overlay">
+        <h1 class="home-hero-title">人形町ランチを制覇しよう。</h1>
+        <p class="home-hero-sub">人形町のランチ店を探して、行ったお店を記録できます</p>
+      </div>
+    </div>
+
+    <div class="home-cta-wrap">
+      <% if logged_in? %>
+        <%= link_to "お店を探す", restaurants_path, class: "home-cta-link" %>
+      <% else %>
+        <%= link_to "新規登録はこちら", signup_path, class: "home-cta-link" %>
+      <% end %>
+    </div>
+  </div>
+
+  <%# ── できること ── %>
+  <div class="mobile-page-container">
+    <section class="page-section">
+      <div class="section-title-box">
+        <h2 class="section-title-text">ランチスタンプでできること</h2>
+      </div>
+
+      <div class="info-card home-feature-list">
+        <div class="home-feature-item">
+          <span class="home-feature-icon">🍽</span>
+          <div class="home-feature-body">
+            <p class="home-feature-name">お店を探す</p>
+            <p class="home-feature-desc">人形町のランチのお店を一覧で簡単に閲覧します</p>
+          </div>
+        </div>
+
+        <div class="home-feature-item">
+          <span class="home-feature-icon">🍱</span>
+          <div class="home-feature-body">
+            <p class="home-feature-name">ランチを記録</p>
+            <p class="home-feature-desc">行ったお店をスタンプで記録できます</p>
+          </div>
+        </div>
+
+        <div class="home-feature-item home-feature-item--last">
+          <span class="home-feature-icon">📊</span>
+          <div class="home-feature-body">
+            <p class="home-feature-name">進捗を確認</p>
+            <p class="home-feature-desc">スタンプの進捗率を確認できます</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
