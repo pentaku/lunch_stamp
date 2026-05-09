@@ -6,7 +6,7 @@
 
     <div class="ls-form-card">
       <%= form_with(model: @user, local: true) do |f| %>
-        <%= render "shared/error_messages" %>
+        <%= render "shared/error_messages", object: f.object %>
 
         <div class="ls-form-group">
           <%= f.label :name, "ユーザー名", class: "ls-form-label" %>
