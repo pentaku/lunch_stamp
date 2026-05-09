@@ -1,15 +1,17 @@
     <footer class="app-footer border-top bg-white py-3">
       <div class="container-fluid app-shell">
-        <div class="footer-links d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+        <div class="d-flex flex-column justify-content-center align-items-center gap-2">
           <%= link_to "利用規約", terms_path, class: "text-muted" %>
-          <span class="d-none d-md-inline text-muted">|</span>
-          <%= link_to "プライバシーポリシー", "#", class: "text-muted" %>
-          <span class="d-none d-md-inline text-muted">|</span>
-          <%= link_to "お問い合わせ", "#", class: "text-muted" %>
+          <div class="app-footer-credit">
+            Powered by
+            <%= link_to "ホットペッパーグルメ Webサービス",
+                        "https://webservice.recruit.co.jp/",
+                        target: "_blank",
+                        rel: "noopener noreferrer" %>
+          </div>
+          <p class="footer-copy text-center mb-0">
+            © 2026 Lunch Stamp
+          </p>
         </div>
-
-        <p class="footer-copy text-center mb-0 mt-2">
-          © 2026 Lunch Stamp
-        </p>
       </div>
     </footer>

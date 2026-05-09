@@ -225,6 +225,25 @@ a {
 }
 
 /* =========================
+  フッタークレジット
+========================= */
+.app-footer-credit {
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: #777;
+  text-align: center;
+}
+
+.app-footer-credit a {
+  color: #f08a24;
+  text-decoration: none;
+}
+
+.app-footer-credit a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
   PCレイアウト（992px以上）
 ========================= */
 @media (min-width: 992px) {
