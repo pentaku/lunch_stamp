@@ -1,19 +1,45 @@
-<h1>Reset password</h1>
+<div class="ls-page-bg">
+  <div class="ls-page-container">
+    <div class="ls-title-box">
+      <h1 class="ls-title-text">新しいパスワードを設定</h1>
+    </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, url: password_reset_path(params[:id])) do |f| %>
-      <%= render 'shared/error_messages' %>
+    <div class="ls-form-card">
+      <%= form_with(model: @user, url: password_reset_path(params[:id])) do |f| %>
+        <%= render 'shared/error_messages' %>
 
-      <%= hidden_field_tag :email, @user.email %>
+        <%= hidden_field_tag :email, @user.email %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+        <div class="ls-form-group">
+          <%= f.label :password, "新しいパスワード", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
+            <%= f.password_field :password,
+                                 class: "ls-form-input",
+                                 placeholder: "********",
+                                 autocomplete: "new-password" %>
+            <span class="ls-input-icon">🔑</span>
+          </div>
+        </div>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <div class="ls-form-group">
+          <%= f.label :password_confirmation, "確認用パスワード", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
+            <%= f.password_field :password_confirmation,
+                                 class: "ls-form-input",
+                                 placeholder: "********",
+                                 autocomplete: "new-password" %>
+            <span class="ls-input-icon">🔒</span>
+          </div>
+        </div>
 
-      <%= f.submit "Update password", class: "btn btn-primary" %>
-    <% end %>
+        <div class="ls-submit-wrap">
+          <%= f.submit "パスワードを更新する", class: "ls-submit-button" %>
+        </div>
+      <% end %>
+
+      <div class="ls-back-link">
+        <%= link_to "ログイン画面に戻る", login_path, class: "common-link" %>
+      </div>
+    </div>
   </div>
 </div>

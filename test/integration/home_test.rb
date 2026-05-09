@@ -8,7 +8,7 @@ class HomeTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # ─── ヒーローセクション ──────────────────────────────────────
+  # ─── コンセプトセクション ──────────────────────────────────────
   test "キャッチコピーが表示される" do
     get root_path
     assert_select "h1.home-hero-title", text: "人形町ランチを制覇しよう。"

@@ -224,6 +224,19 @@ a {
   text-decoration: underline;
 }
 
+/* フォーム説明文・戻るリンク */
+.ls-form-description {
+  font-size: 0.78rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.ls-back-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
 /* =========================
   フッタークレジット
 ========================= */
