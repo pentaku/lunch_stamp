@@ -1,49 +1,60 @@
-<div class="signup-page-bg">
-  <div class="signup-page-container">
-    <div class="signup-title-box">
-      <h1 class="signup-title-text">新規登録</h1>
+<div class="ls-page-bg">
+  <div class="ls-page-container">
+    <div class="ls-title-box">
+      <h1 class="ls-title-text">新規登録</h1>
     </div>
 
-    <div class="signup-form-card">
-      <%= form_with model: @user, class: "signup-form" do |f| %>
+    <div class="ls-form-card">
+      <%= form_with model: @user do |f| %>
         <%= render 'shared/error_messages' %>
 
-        <div class="signup-form-group">
-          <%= f.label :name, "ユーザー名", class: "signup-form-label" %>
-          <div class="signup-input-wrap">
-            <%= f.text_field :name, class: "signup-form-input", placeholder: "username" %>
-            <span class="signup-input-icon">👤</span>
+        <div class="ls-form-group">
+          <%= f.label :name, "ユーザー名", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
+            <%= f.text_field :name,
+                             class: "ls-form-input",
+                             placeholder: "username",
+                             autocomplete: "name" %>
+            <span class="ls-input-icon">👤</span>
           </div>
         </div>
 
-        <div class="signup-form-group">
-          <%= f.label :email, "メールアドレスを入力", class: "signup-form-label" %>
-          <div class="signup-input-wrap">
-            <%= f.email_field :email, class: "signup-form-input", placeholder: "email@gmail.com" %>
-            <span class="signup-input-icon">✉️</span>
+        <div class="ls-form-group">
+          <%= f.label :email, "メールアドレスを入力", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
+            <%= f.email_field :email,
+                              class: "ls-form-input",
+                              placeholder: "email@example.com",
+                              autocomplete: "email" %>
+            <span class="ls-input-icon">✉️</span>
           </div>
         </div>
 
-        <div class="signup-form-group">
-          <%= f.label :password, "パスワードを作成する", class: "signup-form-label" %>
-          <div class="signup-input-wrap">
-            <%= f.password_field :password, class: "signup-form-input", placeholder: "********" %>
-            <span class="signup-input-icon">🔑</span>
+        <div class="ls-form-group">
+          <%= f.label :password, "パスワードを作成する", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
+            <%= f.password_field :password,
+                                 class: "ls-form-input",
+                                 placeholder: "********",
+                                 autocomplete: "new-password" %>
+            <span class="ls-input-icon">🔑</span>
           </div>
         </div>
 
-        <div class="signup-form-group">
-          <%= f.label :password_confirmation, "パスワードを再入力する", class: "signup-form-label" %>
-          <div class="signup-input-wrap">
-            <%= f.password_field :password_confirmation, class: "signup-form-input", placeholder: "********" %>
-            <span class="signup-input-icon">🔒</span>
+        <div class="ls-form-group">
+          <%= f.label :password_confirmation, "パスワードを再入力する", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
+            <%= f.password_field :password_confirmation,
+                                 class: "ls-form-input",
+                                 placeholder: "********",
+                                 autocomplete: "new-password" %>
+            <span class="ls-input-icon">🔒</span>
           </div>
         </div>
 
-        <div class="signup-submit-wrap">
-          <%= f.submit "登録", class: "signup-submit-button" %>
+        <div class="ls-submit-wrap">
+          <%= f.submit "登録", class: "ls-submit-button" %>
         </div>
-
       <% end %>
     </div>
   </div>

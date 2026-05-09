@@ -1,37 +1,36 @@
-
-<div class="login-page-bg">
-  <div class="login-page-container">
-    <div class="login-title-box">
-      <h1 class="login-title-text">ログイン</h1>
+<div class="ls-page-bg">
+  <div class="ls-page-container">
+    <div class="ls-title-box">
+      <h1 class="ls-title-text">ログイン</h1>
     </div>
 
-    <div class="login-form-card">
+    <div class="ls-form-card">
       <% flash.each do |type, message| %>
-        <div class="alert alert-<%= type %> login-alert">
+        <div class="alert alert-<%= type %>">
           <%= message %>
         </div>
       <% end %>
 
       <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
-        <div class="login-form-group">
-          <%= f.label :email, "メールアドレスを入力してください", class: "login-form-label" %>
-          <div class="login-input-wrap">
+        <div class="ls-form-group">
+          <%= f.label :email, "メールアドレスを入力してください", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
             <%= f.email_field :email,
-                              class: "login-form-input",
+                              class: "ls-form-input",
                               placeholder: "email@email.com",
                               autocomplete: "email" %>
-            <span class="login-input-icon">✉</span>
+            <span class="ls-input-icon">✉</span>
           </div>
         </div>
 
-        <div class="login-form-group">
-          <%= f.label :password, "パスワードを入力してください", class: "login-form-label" %>
-          <div class="login-input-wrap">
+        <div class="ls-form-group">
+          <%= f.label :password, "パスワードを入力してください", class: "ls-form-label" %>
+          <div class="ls-input-wrap">
             <%= f.password_field :password,
-                                 class: "login-form-input",
+                                 class: "ls-form-input",
                                  placeholder: "************",
                                  autocomplete: "current-password" %>
-            <span class="login-input-icon">🔑</span>
+            <span class="ls-input-icon">🔑</span>
           </div>
         </div>
 
@@ -41,11 +40,11 @@
         <% end %>
 
         <div class="login-forgot-password">
-          <%= link_to "パスワードを忘れた場合", new_password_reset_path %>
+          <%= link_to "パスワードを忘れた場合", new_password_reset_path, class: "common-link" %>
         </div>
 
-        <div class="login-submit-wrap">
-          <%= f.submit "ログイン", class: "login-submit-button" %>
+        <div class="ls-submit-wrap">
+          <%= f.submit "ログイン", class: "ls-submit-button" %>
         </div>
       <% end %>
     </div>
