@@ -35,4 +35,5 @@
 /config/master.key
 
 /.claude
+.vscode
 CLAUDE.md
