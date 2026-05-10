@@ -19,6 +19,9 @@
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <% if logged_in? %>
             <li class="nav-item">
+              <%= link_to "店舗一覧", restaurants_path, class: "nav-link px-0 px-lg-3" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "マイページ", current_user, class: "nav-link px-0 px-lg-3" %>
             </li>
             <li class="nav-item">
