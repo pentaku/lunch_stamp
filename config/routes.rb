@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
-  resources :restaurants, param: :hotpepper_id do
+  resources :restaurants, param: :hotpepper_id, only: [:index, :show] do
     resource :visit, only: [:create, :destroy]
   end
 end
