@@ -2,37 +2,6 @@
   店舗一覧ページ
 ========================= */
 
-.restaurants-page-bg {
-  background-color: #f6efdf;
-  min-height: 100vh;
-  padding-top: 20px;
-  padding-bottom: 40px;
-}
-
-.restaurants-page-container {
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-.restaurants-title-box {
-  background-color: #f6efdf;
-  border-top: 1px solid #8f877c;
-  border-bottom: 1px solid #8f877c;
-  text-align: center;
-  padding: 14px 8px;
-  margin-bottom: 20px;
-}
-
-.restaurants-title-text {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #3d352d;
-}
-
 .restaurants-search-wrap {
   margin-top: 20px;
   margin-bottom: 12px;
@@ -74,23 +43,6 @@
   font-size: 0.82rem;
   color: #555;
   outline: none;
-}
-
-.restaurants-submit-button {
-  width: 100%;
-  height: 42px;
-  border: none;
-  border-radius: 8px;
-  background-color: #ff8a00;
-  color: #ffffff;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.restaurants-submit-button:hover {
-  background-color: #e67c00;
 }
 
 .restaurants-result-count {
@@ -136,6 +88,12 @@
   margin-bottom: 10px;
 }
 
+.restaurants-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .restaurants-card-link {
   display: inline-block;
   font-size: 0.78rem;
@@ -146,15 +104,16 @@
   text-decoration: none;
 }
 
-.restaurants-card-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
 .restaurants-card-link:hover {
   background-color: #f08a24;
   color: #ffffff;
+}
+
+.restaurants-search-note {
+  font-size: 0.72rem;
+  color: #888;
+  margin-top: 6px;
+  margin-left: 4px;
 }
 
 /* =========================
@@ -221,26 +180,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.restaurants-search-note {
-  font-size: 0.72rem;
-  color: #888;
-  margin-top: 6px;
-  margin-left: 4px;
-}
-
-/* =========================
-  PC表示
-========================= */
-
-@media screen and (min-width: 992px) {
-  .restaurants-page-bg {
-    padding-top: 40px;
-    padding-bottom: 64px;
-  }
-
-  .restaurants-page-container {
-    max-width: 520px;
-  }
 }
