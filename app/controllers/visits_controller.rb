@@ -21,7 +21,7 @@ class VisitsController < ApplicationController
         area: shop.dig("small_area", "name"),
         budget: shop.dig("budget", "name"),
         photo_url: shop.dig("photo", "pc", "l"),
-        url: shop["urls"]["pc"]
+        url: shop.dig("urls", "pc")
       )
 
       restaurant.save!

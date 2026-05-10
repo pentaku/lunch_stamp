@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
       redirect_to login_url, status: :see_other
     end
   end
+
+  def redirect_if_logged_in
+    redirect_to root_url if logged_in?
+  end
 end
