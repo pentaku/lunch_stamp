@@ -1,0 +1,24 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+    - 'config/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+
+Layout/LineLength:
+  Max: 130
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
