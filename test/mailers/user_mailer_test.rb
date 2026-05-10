@@ -5,8 +5,10 @@ class UserMailerTest < ActionMailer::TestCase
     user = users(:michael)
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
-    body = [mail.text_part&.body&.decoded,
-            mail.html_part&.body&.decoded].compact.join
+    body = [
+      mail.text_part&.body&.decoded,
+      mail.html_part&.body&.decoded,
+    ].compact.join
 
     assert_equal "【Lunch Stamp】アカウント有効化のご案内", mail.subject
     assert_equal [user.email], mail.to
@@ -21,8 +23,10 @@ class UserMailerTest < ActionMailer::TestCase
     user.reset_token = User.new_token
     mail = UserMailer.password_reset(user)
 
-    body = [mail.text_part&.body&.decoded,
-            mail.html_part&.body&.decoded].compact.join
+    body = [
+      mail.text_part&.body&.decoded,
+      mail.html_part&.body&.decoded,
+    ].compact.join
 
     assert_equal "【Lunch Stamp】パスワード再設定のご案内", mail.subject
     assert_equal [user.email], mail.to

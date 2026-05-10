@@ -15,13 +15,13 @@ class VisitsController < ApplicationController
       )
 
       restaurant.assign_attributes(
-        name:      shop["name"],
-        address:   shop["address"],
-        genre:     shop.dig("genre", "name"),
-        area:      shop.dig("small_area", "name"),
-        budget:    shop.dig("budget", "name"),
+        name: shop["name"],
+        address: shop["address"],
+        genre: shop.dig("genre", "name"),
+        area: shop.dig("small_area", "name"),
+        budget: shop.dig("budget", "name"),
         photo_url: shop.dig("photo", "pc", "l"),
-        url:       shop["urls"]["pc"]
+        url: shop["urls"]["pc"]
       )
 
       restaurant.save!

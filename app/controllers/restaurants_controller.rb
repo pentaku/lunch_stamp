@@ -3,8 +3,8 @@ class RestaurantsController < ApplicationController
     if params[:keyword].present? || params[:genre].present? || params[:budget].present?
       @restaurants = HotpepperService.search(
         keyword: params[:keyword].to_s,
-        genre:   params[:genre].to_s,
-        budget:  params[:budget].to_s
+        genre: params[:genre].to_s,
+        budget: params[:budget].to_s
       )
     else
       @restaurants = []
@@ -13,11 +13,16 @@ class RestaurantsController < ApplicationController
 
   def show
     @shop = HotpepperService.find(params[:hotpepper_id])
-    return redirect_to restaurants_path,
-          alert: "店舗情報が取得できませんでした" if @shop.blank?
+    if @shop.blank?
+      redirect_to restaurants_path,
+            alert: "店舗情報が取得できませんでした"
+    end
   end
 
   def new
+  end
+
+  def edit
   end
 
   def create
@@ -26,22 +31,16 @@ class RestaurantsController < ApplicationController
     )
 
     unless @restaurant.new_record?
-      return redirect_back fallback_location: restaurants_path,
-                           notice: "すでに保存済みのお店です"
+      return redirect_back_or_to(restaurants_path, notice: "すでに保存済みのお店です")
     end
 
     @restaurant.assign_attributes(restaurant_params)
 
     if @restaurant.save
-      redirect_back fallback_location: restaurants_path,
-                    notice: "お店を保存しました！"
+      redirect_back_or_to(restaurants_path, notice: "お店を保存しました！")
     else
-      redirect_back fallback_location: restaurants_path,
-                    alert: "保存に失敗しました"
+      redirect_back_or_to(restaurants_path, alert: "保存に失敗しました")
     end
-  end
-
-  def edit
   end
 
   def update
@@ -52,16 +51,16 @@ class RestaurantsController < ApplicationController
 
   private
 
-    def restaurant_params
-      params.require(:restaurant).permit(
-        :hotpepper_id,
-        :name,
-        :address,
-        :genre,
-        :area,
-        :budget,
-        :photo_url,
-        :url
-      )
-    end
+  def restaurant_params
+    params.require(:restaurant).permit(
+      :hotpepper_id,
+      :name,
+      :address,
+      :genre,
+      :area,
+      :budget,
+      :photo_url,
+      :url
+    )
+  end
 end

@@ -6,6 +6,9 @@ class PasswordResetsController < ApplicationController
   def new
   end
 
+  def edit
+  end
+
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
 
@@ -18,9 +21,6 @@ class PasswordResetsController < ApplicationController
       flash.now[:danger] = "メールアドレスが見つかりません"
       render "new", status: :unprocessable_entity
     end
-  end
-
-  def edit
   end
 
   def update
@@ -39,25 +39,24 @@ class PasswordResetsController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 
-    def get_user
-      @user = User.find_by(email: params[:email])
-    end
+  def get_user
+    @user = User.find_by(email: params[:email])
+  end
 
-    def valid_user
-      unless @user && @user.activated? &&
-             @user.authenticated?(:reset, params[:id])
-        redirect_to root_url
-      end
+  def valid_user
+    if !(@user && @user.activated? && @user.authenticated?(:reset, params[:id]))
+      redirect_to root_url
     end
+  end
 
-    def check_expiration
-      if @user.password_reset_expired?
-        flash[:danger] = "パスワード再設定リンクの有効期限が切れています"
-        redirect_to new_password_reset_url
-      end
+  def check_expiration
+    if @user.password_reset_expired?
+      flash[:danger] = "パスワード再設定リンクの有効期限が切れています"
+      redirect_to new_password_reset_url
     end
+  end
 end

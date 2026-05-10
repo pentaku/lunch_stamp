@@ -13,8 +13,13 @@ class User < ApplicationRecord
   has_many :visited_restaurants, through: :visits, source: :restaurant
 
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    cost =
+      if ActiveModel::SecurePassword.min_cost
+        BCrypt::Engine::MIN_COST
+      else
+        BCrypt::Engine.cost
+      end
+
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -24,7 +29,7 @@ class User < ApplicationRecord
 
   def remember
     self.remember_token = User.new_token
-    self.update_attribute(:remember_digest, User.digest(remember_token))
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 
   def authenticated?(attribute, token)
@@ -35,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def forget
-    self.update_attribute(:remember_digest, nil)
+    update_attribute(:remember_digest, nil)
   end
 
   def activate
@@ -63,12 +68,12 @@ class User < ApplicationRecord
 
   private
 
-    def downcase_email
-      self.email = email.downcase
-    end
+  def downcase_email
+    self.email = email.downcase
+  end
 
-    def create_activation_digest
-      self.activation_token  = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end

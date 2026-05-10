@@ -1,7 +1,6 @@
 require "test_helper"
 
 class MypageTest < ActionDispatch::IntegrationTest
-
   def setup
     @user = users(:michael)
     log_in_as(@user)
@@ -91,12 +90,12 @@ class MypageTest < ActionDispatch::IntegrationTest
   # ─── 訪問履歴（なし） ──────────────────────────────────────────
   test "訪問記録がない場合、空状態メッセージが表示される" do
     no_visit_user = User.create!(
-      name:                  "未訪問ユーザー",
-      email:                 "novisit@example.com",
-      password:              "password",
+      name: "未訪問ユーザー",
+      email: "novisit@example.com",
+      password: "password",
       password_confirmation: "password",
-      activated:             true,
-      activated_at:          Time.zone.now
+      activated: true,
+      activated_at: Time.zone.now
     )
 
     delete logout_path

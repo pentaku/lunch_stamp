@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @visits = @user.visits.includes(:restaurant)
-                          .order(visited_at: :desc)
+    @visits = @user.visits.includes(:restaurant).
+      order(visited_at: :desc)
     @total_restaurants_count = 20
     @visited_count           = @visits.size
     @completion_rate         = (@visited_count.to_f / @total_restaurants_count * 100).round
@@ -13,6 +13,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def edit
+    @user = User.find(params[:id])
   end
 
   def create
@@ -26,10 +30,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -41,14 +41,14 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
-    end
 
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
+  end
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to root_url, status: :see_other unless current_user?(@user)
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to root_url, status: :see_other unless current_user?(@user)
+  end
 end

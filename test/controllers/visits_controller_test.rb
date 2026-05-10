@@ -1,7 +1,6 @@
 require "test_helper"
 
 class VisitsControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @user       = users(:michael)
     @restaurant = restaurants(:two)
@@ -26,14 +25,14 @@ class VisitsControllerTest < ActionDispatch::IntegrationTest
   test "ログイン時にcreateできる" do
     log_in_as(@user)
     dummy_shop = {
-      "id"         => @restaurant.hotpepper_id,
-      "name"       => @restaurant.name,
-      "address"    => @restaurant.address,
-      "genre"      => { "name" => @restaurant.genre },
+      "id" => @restaurant.hotpepper_id,
+      "name" => @restaurant.name,
+      "address" => @restaurant.address,
+      "genre" => { "name" => @restaurant.genre },
       "small_area" => { "name" => @restaurant.area },
-      "budget"     => { "name" => @restaurant.budget },
-      "photo"      => { "pc" => { "l" => @restaurant.photo_url } },
-      "urls"       => { "pc" => @restaurant.url }
+      "budget" => { "name" => @restaurant.budget },
+      "photo" => { "pc" => { "l" => @restaurant.photo_url } },
+      "urls" => { "pc" => @restaurant.url },
     }
 
     original_method = HotpepperService.method(:find)
@@ -49,8 +48,8 @@ class VisitsControllerTest < ActionDispatch::IntegrationTest
 
   test "ログイン時にdestroyできる" do
     log_in_as(@user)
-    visit = Visit.create!(
-      user:       @user,
+    Visit.create!(
+      user: @user,
       restaurant: @restaurant,
       visited_at: Date.current
     )
@@ -59,5 +58,4 @@ class VisitsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to restaurant_path(@restaurant.hotpepper_id)
   end
-
 end

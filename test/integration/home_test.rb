@@ -1,7 +1,6 @@
 require "test_helper"
 
 class HomeTest < ActionDispatch::IntegrationTest
-
   # ─── アクセス ────────────────────────────────────────────────
   test "トップページに200でアクセスできる" do
     get root_path

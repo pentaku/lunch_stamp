@@ -1,7 +1,6 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @user       = users(:michael)
     @other_user = users(:archer)
@@ -19,8 +18,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "未ログイン時はupdateできない" do
-    patch user_path(@user), params: { user: { name: @user.name,
-                                              email: @user.email } }
+    patch user_path(@user), params: {
+      user: {
+        name: @user.name,
+        email: @user.email,
+      },
+    }
     assert_not flash.empty?
     assert_redirected_to login_url
   end
@@ -34,8 +37,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "別ユーザーのupdateはできない" do
     log_in_as(@other_user)
-    patch user_path(@user), params: { user: { name: @user.name,
-                                              email: @user.email } }
+    patch user_path(@user), params: {
+      user: {
+        name: @user.name,
+        email: @user.email,
+      },
+    }
     assert flash.empty?
     assert_redirected_to root_url
   end

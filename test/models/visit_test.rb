@@ -5,7 +5,7 @@ class VisitTest < ActiveSupport::TestCase
     @user       = users(:michael)
     @restaurant = restaurants(:two)
     @visit      = Visit.new(
-      user:       @user,
+      user: @user,
       restaurant: @restaurant,
       visited_at: Date.current
     )
@@ -23,7 +23,7 @@ class VisitTest < ActiveSupport::TestCase
   test "同じユーザーが同じお店に2回登録できない" do
     @visit.save
     duplicate_visit = Visit.new(
-      user:       @user,
+      user: @user,
       restaurant: @restaurant,
       visited_at: Date.current
     )
