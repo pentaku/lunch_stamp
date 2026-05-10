@@ -181,10 +181,15 @@ a {
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ls-submit-button:hover {
   background-color: #e67c00;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .field_with_errors .ls-form-input {

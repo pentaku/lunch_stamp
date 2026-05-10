@@ -1,5 +1,5 @@
-<div class="restaurants-page-bg">
-  <div class="restaurants-page-container">
+<div class="ls-page-bg">
+  <div class="ls-page-container">
     <% if @shop.dig("photo", "mobile", "l").present? %>
       <%= image_tag @shop.dig("photo", "mobile", "l"),
                     class: "restaurants-show-img",
@@ -10,8 +10,8 @@
       </p>
     <% end %>
 
-    <div class="restaurants-title-box">
-      <p class="restaurants-title-text"><%= @shop["name"] %></p>
+    <div class="section-title-box">
+      <p class="section-title-text"><%= @shop["name"] %></p>
     </div>
 
     <div class="restaurants-show-info">
@@ -49,13 +49,13 @@
                         method: :post,
                         local: true do |f| %>
             <%= f.submit "訪問済みにする",
-                        class: "restaurants-submit-button" %>
+                         class: "ls-submit-button" %>
           <% end %>
         <% end %>
       <% else %>
         <%= link_to "ログインして訪問記録する",
                     login_path,
-                    class: "restaurants-submit-button" %>
+                    class: "ls-submit-button" %>
       <% end %>
     </div>
 
