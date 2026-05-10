@@ -7,12 +7,12 @@ class UsersLogin < ActionDispatch::IntegrationTest
 end
 
 class InvalidPasswordTest < UsersLogin
-  test "login path" do
+  test "ログインページにアクセスできる" do
     get login_path
     assert_template 'sessions/new'
   end
 
-  test "login with valid email/invalid password" do
+  test "正しいメールアドレスと誤ったパスワードではログインできない" do
     post login_path, params: {
       session: {
         email: @user.email,
@@ -41,17 +41,22 @@ class ValidLogin < UsersLogin
 end
 
 class ValidLoginTest < ValidLogin
-  test "valid login" do
+  test "正しいログイン情報でログインできる" do
     assert is_logged_in?
     assert_redirected_to @user
   end
 
-  test "redirect after login" do
+  test "ログイン後はユーザー詳細ページが表示される" do
     follow_redirect!
     assert_template 'users/show'
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
+  end
+
+  test "ログイン済みユーザーはログインページにアクセスするとトップページへリダイレクトされる" do
+    get login_path
+    assert_redirected_to root_url
   end
 end
 
@@ -63,32 +68,32 @@ class Logout < ValidLogin
 end
 
 class LogoutTest < Logout
-  test "successful logout" do
+  test "ログアウトできる" do
     assert_not is_logged_in?
     assert_response :see_other
     assert_redirected_to root_url
   end
 
-  test "redirect after logout" do
+  test "ログアウト後はログインリンクが表示される" do
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path,      count: 0
     assert_select "a[href=?]", user_path(@user), count: 0
   end
 
-  test "should still work after logout in second window" do
+  test "別ウィンドウで再度ログアウトしても正常に処理される" do
     delete logout_path
     assert_redirected_to root_url
   end
 end
 
 class RememberingTest < UsersLogin
-  test "login with remembering" do
+  test "remember meありでログインするとremember tokenが保存される" do
     log_in_as(@user, remember_me: '1')
     assert_not cookies[:remember_token].blank?
   end
 
-  test "login without remembering" do
+  test "remember meなしでログインするとremember tokenが削除される" do
     log_in_as(@user, remember_me: '1')
     log_in_as(@user, remember_me: '0')
     assert cookies[:remember_token].blank?

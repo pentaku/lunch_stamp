@@ -7,7 +7,7 @@ class UsersSignup < ActionDispatch::IntegrationTest
 end
 
 class UsersSignupTest < UsersSignup
-  test "invalid signup information" do
+  test "無効な新規登録情報ではユーザー登録できない" do
     assert_no_difference 'User.count' do
       post users_path, params: {
         user: {
@@ -24,7 +24,7 @@ class UsersSignupTest < UsersSignup
     assert_select 'div.field_with_errors'
   end
 
-  test "valid signup information with account activation" do
+  test "有効な新規登録情報ではアカウント有効化メールが送信される" do
     assert_difference 'User.count', 1 do
       post users_path, params: {
         user: {
@@ -36,6 +36,31 @@ class UsersSignupTest < UsersSignup
       }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
+  end
+
+  test "ログイン済みユーザーは新規登録ページにアクセスするとトップページへリダイレクトされる" do
+    log_in_as(users(:michael))
+
+    get signup_path
+
+    assert_redirected_to root_url
+  end
+
+  test "ログイン済みユーザーは新規登録処理を実行するとトップページへリダイレクトされる" do
+    log_in_as(users(:michael))
+
+    assert_no_difference 'User.count' do
+      post users_path, params: {
+        user: {
+          name: "Another User",
+          email: "another@example.com",
+          password: "password",
+          password_confirmation: "password",
+        },
+      }
+    end
+
+    assert_redirected_to root_url
   end
 end
 
@@ -53,26 +78,26 @@ class AccountActivationTest < UsersSignup
     @user = assigns(:user)
   end
 
-  test "should not be activated" do
+  test "新規登録直後のユーザーは有効化されていない" do
     assert_not @user.activated?
   end
 
-  test "should not be able to log in before account activation" do
+  test "アカウント有効化前のユーザーはログインできない" do
     log_in_as(@user)
     assert_not is_logged_in?
   end
 
-  test "should not be able to log in with invalid activation token" do
+  test "無効な有効化トークンではログインできない" do
     get edit_account_activation_path("invalid token", email: @user.email)
     assert_not is_logged_in?
   end
 
-  test "should not be able to log in with invalid email" do
+  test "無効なメールアドレスではログインできない" do
     get edit_account_activation_path(@user.activation_token, email: 'wrong')
     assert_not is_logged_in?
   end
 
-  test "should log in successfully with valid activation token and email" do
+  test "有効な有効化トークンとメールアドレスでログインできる" do
     get edit_account_activation_path(@user.activation_token, email: @user.email)
     assert @user.reload.activated?
     follow_redirect!
