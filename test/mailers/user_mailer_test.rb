@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UserMailerTest < ActionMailer::TestCase
-  test "account_activation" do
+  test "アカウント有効化メールが正しく送信される" do
     user = users(:michael)
     user.activation_token = User.new_token
     mail = UserMailer.account_activation(user)
@@ -18,7 +18,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match CGI.escape(user.email), body
   end
 
-  test "password_reset" do
+  test "パスワード再設定メールが正しく送信される" do
     user = users(:michael)
     user.reset_token = User.new_token
     mail = UserMailer.password_reset(user)

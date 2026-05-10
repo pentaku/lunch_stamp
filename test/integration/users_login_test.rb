@@ -88,12 +88,12 @@ class LogoutTest < Logout
 end
 
 class RememberingTest < UsersLogin
-  test "remember meありでログインするとremember tokenが保存される" do
+  test "ログイン状態を保持にチェックを入れるとremember_tokenが保存される" do
     log_in_as(@user, remember_me: '1')
     assert_not cookies[:remember_token].blank?
   end
 
-  test "remember meなしでログインするとremember tokenが削除される" do
+  test "ログイン状態を保持のチェックを外すとremember_tokenが削除される" do
     log_in_as(@user, remember_me: '1')
     log_in_as(@user, remember_me: '0')
     assert cookies[:remember_token].blank?

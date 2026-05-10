@@ -6,12 +6,12 @@ class SessionsHelperTest < ActionView::TestCase
     remember(@user)
   end
 
-  test "current_user returns right user when session is nil" do
+  test "セッションが空でもcookieから正しいユーザーを返す" do
     assert_equal @user, current_user
     assert is_logged_in?
   end
 
-  test "current_user returns nil when remember digest is wrong" do
+  test "remember_digestが不一致ならcurrent_userはnilを返す" do
     @user.update_attribute(:remember_digest, User.digest(User.new_token))
     assert_nil current_user
   end
