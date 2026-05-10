@@ -1,20 +1,20 @@
-<div class="restaurants-page-bg">
-  <div class="restaurants-page-container">
+<div class="ls-page-bg">
+  <div class="ls-page-container">
 
     <%# タイトル %>
-    <div class="restaurants-title-box">
-      <p class="restaurants-title-text">店舗一覧</p>
+    <div class="section-title-box">
+      <p class="section-title-text">店舗一覧</p>
     </div>
 
     <%# 検索・フィルターフォーム %>
     <%= form_with url: restaurants_path, method: :get, local: true do |f| %>
-    <div class="restaurants-search-wrap">
-      <%= f.text_field :keyword,
-                        value: params[:keyword],
-                        placeholder: "人形町のお店をキーワード検索",
-                        class: "restaurants-search-input" %>
-      <p class="restaurants-search-note">人形町エリアのお店だけを検索できます</p>
-    </div>
+      <div class="restaurants-search-wrap">
+        <%= f.text_field :keyword,
+                         value: params[:keyword],
+                         placeholder: "人形町のお店をキーワード検索",
+                         class: "restaurants-search-input" %>
+        <p class="restaurants-search-note">人形町エリアのお店だけを検索できます</p>
+      </div>
 
       <div class="restaurants-filter-wrap">
         <%= f.select :genre,
@@ -47,7 +47,7 @@
                      class: "restaurants-filter-select" %>
       </div>
 
-      <%= f.submit "検索", class: "restaurants-submit-button" %>
+      <%= f.submit "検索", class: "ls-submit-button" %>
     <% end %>
 
     <%# 検索結果 %>
