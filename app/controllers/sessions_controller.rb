@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
+      @email = params[:session][:email]
       flash.now[:danger] = "メールアドレスまたはパスワードが正しくありません"
       render "new", status: :unprocessable_entity
     end
