@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2026_05_06_065456) do
+ActiveRecord::Schema[7.0].define(version: 2026_05_19_091319) do
+  create_table "audit_logs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "action", null: false
+    t.string "target_type"
+    t.integer "target_id"
+    t.string "ip_address"
+    t.text "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "index_audit_logs_on_action"
+    t.index ["created_at"], name: "index_audit_logs_on_created_at"
+    t.index ["user_id"], name: "index_audit_logs_on_user_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "hotpepper_id"
     t.string "name"
@@ -51,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2026_05_06_065456) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
+  add_foreign_key "audit_logs", "users"
   add_foreign_key "visits", "restaurants"
   add_foreign_key "visits", "users"
 end
