@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  action: MyString
-  target_type: MyString
-  target_id: 1
-  ip_address: MyString
-  user_agent: MyText
+  user: michael
+  action: login
+  target_type:
+  target_id:
+  ip_address: "127.0.0.1"
+  user_agent: "Mozilla/5.0"
 
 two:
-  user: two
-  action: MyString
-  target_type: MyString
+  user: michael
+  action: visit_create
+  target_type: Visit
   target_id: 1
-  ip_address: MyString
-  user_agent: MyText
+  ip_address: "127.0.0.1"
+  user_agent: "Mozilla/5.0"
