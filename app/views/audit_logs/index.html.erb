@@ -1,0 +1,50 @@
+<div class="ls-page-bg">
+  <div class="ls-page-container">
+
+    <div class="section-title-box">
+      <h1 class="section-title-text">監査ログ</h1>
+    </div>
+
+    <div class="audit-log-actions">
+      <%= link_to "CSVダウンロード",
+                  export_csv_audit_logs_path(format: :csv),
+                  class: "ls-submit-button" %>
+    </div>
+
+    <% if @audit_logs.any? %>
+      <div class="audit-log-table-wrap">
+        <table class="audit-log-table">
+          <thead>
+            <tr>
+              <th>日時</th>
+              <th>ユーザー</th>
+              <th>アクション</th>
+              <th>対象</th>
+              <th>IPアドレス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @audit_logs.each do |log| %>
+              <tr>
+                <td><%= log.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+                <td><%= log.user.name %></td>
+                <td><%= log.action %></td>
+                <td>
+                  <% if log.target_type.present? %>
+                    <%= "#{log.target_type} ##{log.target_id}" %>
+                  <% else %>
+                    ー
+                  <% end %>
+                </td>
+                <td><%= log.ip_address %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="audit-log-empty">ログがありません。</p>
+    <% end %>
+
+  </div>
+</div>
