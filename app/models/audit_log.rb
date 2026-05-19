@@ -2,6 +2,8 @@
 class AuditLog < ApplicationRecord
   belongs_to :user
 
+  validates :action, presence: true, inclusion: { in: ACTIONS }
+
   # ログの種類を定義
   ACTIONS = %w[
     login
@@ -9,7 +11,4 @@ class AuditLog < ApplicationRecord
     visit_create
     visit_destroy
   ].freeze
-
-  # アクションが空でないこと、かつ ACTIONS に含まれる文字であることを検証
-  validates :action, presence: true, inclusion: { in: ACTIONS }
 end
