@@ -14,4 +14,19 @@ class ApplicationController < ActionController::Base
   def redirect_if_logged_in
     redirect_to root_url if logged_in?
   end
+
+  def create_audit_log(action:, target: nil)
+    return unless logged_in?
+
+    AuditLog.create!(
+      user:        current_user,
+      action:      action,
+      target_type: target&.class&.name,
+      target_id:   target&.id,
+      ip_address:  request.remote_ip,
+      user_agent:  request.user_agent,
+    )
+  rescue StandardError => e
+    Rails.logger.error("[AuditLog] 記録失敗: #{e.message}")
+  end
 end
