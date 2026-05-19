@@ -247,6 +247,49 @@ a {
 }
 
 /* =========================
+  監査ログ
+========================= */
+.audit-log-actions {
+  margin: 16px 0;
+  text-align: right;
+}
+
+.audit-log-table-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.audit-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid #e8e0d0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  th {
+    background-color: #f6efdf;
+    font-weight: 700;
+    color: #3d352d;
+  }
+
+  tr:hover td {
+    background-color: #fdf8f0;
+  }
+}
+
+.audit-log-empty {
+  text-align: center;
+  color: #888;
+  padding: 32px 0;
+  font-size: 0.85rem;
+}
+
+/* =========================
   PCレイアウト（992px以上）
 ========================= */
 @media (min-width: 992px) {

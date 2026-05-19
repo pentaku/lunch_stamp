@@ -14,4 +14,10 @@ Rails.application.routes.draw do
   resources :restaurants, param: :hotpepper_id, only: [:index, :show] do
     resource :visit, only: [:create, :destroy]
   end
+
+  resources :audit_logs, only: [:index] do
+    collection do
+      get :export_csv
+    end
+  end
 end
