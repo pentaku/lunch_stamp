@@ -4,7 +4,7 @@ class VisitsController < ApplicationController
   def create
     shop = HotpepperService.find(params[:restaurant_hotpepper_id])
 
-    if shop.nil?
+    if shop.blank?
       return redirect_to restaurants_path,
                          alert: "店舗情報が取得できませんでした"
     end
@@ -15,21 +15,23 @@ class VisitsController < ApplicationController
       )
 
       restaurant.assign_attributes(
-        name: shop["name"],
-        address: shop["address"],
-        genre: shop.dig("genre", "name"),
-        area: shop.dig("small_area", "name"),
-        budget: shop.dig("budget", "name"),
+        name:      shop["name"],
+        address:   shop["address"],
+        genre:     shop.dig("genre", "name"),
+        area:      shop.dig("small_area", "name"),
+        budget:    shop.dig("budget", "name"),
         photo_url: shop.dig("photo", "pc", "l"),
-        url: shop.dig("urls", "pc")
+        url:       shop.dig("urls", "pc"),
       )
 
       restaurant.save!
 
-      restaurant.visits.create!(
-        user: current_user,
-        visited_at: Date.current
+      visit = restaurant.visits.create!(
+        user:       current_user,
+        visited_at: Date.current,
       )
+
+      create_audit_log(action: "visit_create", target: visit)
     end
 
     redirect_to restaurant_path(params[:restaurant_hotpepper_id]),
@@ -44,6 +46,8 @@ class VisitsController < ApplicationController
     restaurant = Restaurant.find_by!(hotpepper_id: params[:restaurant_hotpepper_id])
     visit = current_user.visits.find_by!(restaurant: restaurant)
     visit.destroy
+
+    create_audit_log(action: "visit_destroy", target: visit)
 
     redirect_to restaurant_path(params[:restaurant_hotpepper_id]),
                 notice: "訪問済みを解除しました"
