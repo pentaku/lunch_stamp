@@ -31,7 +31,7 @@ class VisitsController < ApplicationController
         visited_at: Date.current,
       )
 
-      create_audit_log(action: "visit_create", target: visit)
+      create_audit_log(action: "visit_create", target: restaurant)
     end
 
     redirect_to restaurant_path(params[:restaurant_hotpepper_id]),
@@ -47,7 +47,7 @@ class VisitsController < ApplicationController
     visit = current_user.visits.find_by!(restaurant: restaurant)
     visit.destroy
 
-    create_audit_log(action: "visit_destroy", target: visit)
+    create_audit_log(action: "visit_destroy", target: restaurant)
 
     redirect_to restaurant_path(params[:restaurant_hotpepper_id]),
                 notice: "訪問済みを解除しました"
