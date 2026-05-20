@@ -1,7 +1,6 @@
 require "test_helper"
 
 class AuditLogsControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @user       = users(:michael)
     @restaurant = restaurants(:two)
@@ -32,7 +31,7 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
     assert_difference "AuditLog.count", 1 do
       post login_path, params: {
         session: {
-          email:    @user.email,
+          email: @user.email,
           password: "password",
         },
       }
@@ -52,14 +51,14 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     original_method = HotpepperService.method(:find)
     dummy_shop = {
-      "id"         => @restaurant.hotpepper_id,
-      "name"       => @restaurant.name,
-      "address"    => @restaurant.address,
-      "genre"      => { "name" => @restaurant.genre },
+      "id" => @restaurant.hotpepper_id,
+      "name" => @restaurant.name,
+      "address" => @restaurant.address,
+      "genre" => { "name" => @restaurant.genre },
       "small_area" => { "name" => @restaurant.area },
-      "budget"     => { "name" => @restaurant.budget },
-      "photo"      => { "pc" => { "l" => @restaurant.photo_url } },
-      "urls"       => { "pc" => @restaurant.url },
+      "budget" => { "name" => @restaurant.budget },
+      "photo" => { "pc" => { "l" => @restaurant.photo_url } },
+      "urls" => { "pc" => @restaurant.url },
     }
     HotpepperService.define_singleton_method(:find) { |_id| dummy_shop }
 
@@ -75,7 +74,7 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
   test "訪問済み解除時にvisit_destroyの監査ログが作成される" do
     log_in_as(@user)
     Visit.create!(
-      user:       @user,
+      user: @user,
       restaurant: @restaurant,
       visited_at: Date.current,
     )
@@ -85,5 +84,4 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "visit_destroy", AuditLog.last.action
     assert_equal "Restaurant", AuditLog.last.target_type
   end
-
 end

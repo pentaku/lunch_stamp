@@ -2,14 +2,14 @@ class AuditLogsController < ApplicationController
   before_action :logged_in_user
 
   def index
-    @audit_logs = AuditLog.includes(:user)
-                           .order(created_at: :desc)
-                           .limit(100)
+    @audit_logs = AuditLog.includes(:user).
+      order(created_at: :desc).
+      limit(100)
   end
 
   def export_csv
-    audit_logs = AuditLog.includes(:user)
-                          .order(created_at: :desc)
+    audit_logs = AuditLog.includes(:user).
+      order(created_at: :desc)
 
     respond_to do |format|
       format.csv do
@@ -26,7 +26,7 @@ class AuditLogsController < ApplicationController
     require "csv"
 
     CSV.generate(headers: true) do |csv|
-      csv << %w[id user_id user_name action target_type target_id ip_address user_agent created_at]
+      csv << %w(id user_id user_name action target_type target_id ip_address user_agent created_at)
 
       audit_logs.each do |log|
         csv << [

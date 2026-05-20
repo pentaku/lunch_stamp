@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_many :visits, dependent: :destroy
   has_many :visited_restaurants, through: :visits, source: :restaurant
-  has_many :audit_logs,           dependent: :destroy
+  has_many :audit_logs, dependent: :destroy
 
   def self.digest(string)
     cost =

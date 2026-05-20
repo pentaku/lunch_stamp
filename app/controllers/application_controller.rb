@@ -19,12 +19,12 @@ class ApplicationController < ActionController::Base
     return unless logged_in?
 
     AuditLog.create!(
-      user:        current_user,
-      action:      action,
+      user: current_user,
+      action: action,
       target_type: target&.class&.name,
-      target_id:   target&.id,
-      ip_address:  request.remote_ip,
-      user_agent:  request.user_agent,
+      target_id: target&.id,
+      ip_address: request.remote_ip,
+      user_agent: request.user_agent,
     )
   rescue StandardError => e
     Rails.logger.error("[AuditLog] 記録失敗: #{e.message}")

@@ -63,22 +63,17 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "lunch_stamp_production"
 
   config.action_mailer.perform_caching = false
-
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
 
+  # 本番環境のホスト名設定
   host = "lunch-stamp.onrender.com"
-  config.action_mailer.default_url_options = { host: host, protocol: "https" }
-
-  config.action_mailer.smtp_settings = {
-    :port           => 2525,
-    :address        => 'smtp.mailgun.org',
-    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => host,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+  config.action_mailer.default_url_options = {
+    host: host,
+    protocol: "https"
   }
+
+  # Resendを使用するための設定
+  config.action_mailer.delivery_method = :resend
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
