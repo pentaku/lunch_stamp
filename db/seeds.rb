@@ -6,13 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 # メインのサンプルユーザーを1人作成する
-admin_user = User.find_or_create_by!(email: "ohara1728136@gmail.com") do |user|
-  user.name = "Example User"
-  user.password = "password"
-  user.password_confirmation = "password"
-  user.activated = true
-  user.activated_at = Time.zone.now
-end
 
 if Rails.env.production?
   admin_user = User.find_by(email: "ohara1728136@gmail.com")
@@ -21,6 +14,6 @@ if Rails.env.production?
     admin_user.update!(admin: true)
     puts "====== [SUCCESS] Admin privilege granted to #{admin_user.email} ======"
   else
-    puts "====== [WARNING] User not found in production database ======"
+    puts "====== [WARNING] Admin target user not found in production database ======"
   end
 end
