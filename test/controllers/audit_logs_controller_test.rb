@@ -2,7 +2,8 @@ require "test_helper"
 
 class AuditLogsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user       = users(:michael)
+    @admin      = users(:michael)
+    @user       = users(:archer)
     @restaurant = restaurants(:two)
   end
 
@@ -12,15 +13,27 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
-  test "ログイン済みはindexにアクセスできる" do
+  test "一般ユーザーはindexにアクセスできない" do
     log_in_as(@user)
+    get audit_logs_path
+    assert_redirected_to root_url
+  end
+
+  test "管理者はindexにアクセスできる" do
+    log_in_as(@admin)
     get audit_logs_path
     assert_response :success
   end
 
   # ─── CSV ────────────────────────────────────────────────────
-  test "ログイン済みはCSVをダウンロードできる" do
+  test "一般ユーザーはCSVをダウンロードできない" do
     log_in_as(@user)
+    get export_csv_audit_logs_path(format: :csv)
+    assert_redirected_to root_url
+  end
+
+  test "管理者はCSVをダウンロードできる" do
+    log_in_as(@admin)
     get export_csv_audit_logs_path(format: :csv)
     assert_response :success
     assert_equal "text/csv; charset=utf-8", response.content_type
@@ -31,7 +44,7 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
     assert_difference "AuditLog.count", 1 do
       post login_path, params: {
         session: {
-          email: @user.email,
+          email: @admin.email,
           password: "password",
         },
       }
@@ -40,7 +53,7 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "ログアウト時に監査ログが作成される" do
-    log_in_as(@user)
+    log_in_as(@admin)
     assert_difference "AuditLog.count", 1 do
       delete logout_path
     end
@@ -48,7 +61,7 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "訪問済み登録時にvisit_createの監査ログが作成される" do
-    log_in_as(@user)
+    log_in_as(@admin)
     original_method = HotpepperService.method(:find)
     dummy_shop = {
       "id" => @restaurant.hotpepper_id,
@@ -72,9 +85,9 @@ class AuditLogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "訪問済み解除時にvisit_destroyの監査ログが作成される" do
-    log_in_as(@user)
+    log_in_as(@admin)
     Visit.create!(
-      user: @user,
+      user: @admin,
       restaurant: @restaurant,
       visited_at: Date.current,
     )

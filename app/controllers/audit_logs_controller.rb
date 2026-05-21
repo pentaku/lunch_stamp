@@ -1,5 +1,6 @@
 class AuditLogsController < ApplicationController
   before_action :logged_in_user
+  before_action :admin_user
 
   def index
     @audit_logs = AuditLog.includes(:user).
@@ -22,6 +23,14 @@ class AuditLogsController < ApplicationController
 
   private
 
+  # CSV Injection 対策：=, +, -, @, タブ, 改行で始まる文字列にシングルクォートを付与し
+  # Excel / LibreOffice に数式として解釈させない
+  def sanitize_csv_cell(value)
+    return value unless value.is_a?(String)
+
+    value.start_with?("=", "+", "-", "@", "\t", "\r") ? "'#{value}" : value
+  end
+
   def generate_csv(audit_logs)
     require "csv"
 
@@ -32,12 +41,12 @@ class AuditLogsController < ApplicationController
         csv << [
           log.id,
           log.user_id,
-          log.user.name,
+          sanitize_csv_cell(log.user.name),
           log.action,
           log.target_type,
           log.target_id,
           log.ip_address,
-          log.user_agent,
+          sanitize_csv_cell(log.user_agent),
           log.created_at.strftime("%Y/%m/%d %H:%M:%S"),
         ]
       end
