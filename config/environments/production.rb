@@ -65,15 +65,22 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
 
-  # 本番環境のホスト名設定
   host = "lunch-stamp.onrender.com"
   config.action_mailer.default_url_options = {
     host: host,
-    protocol: "https"
+    protocol: "https",
   }
 
-  # Resendを使用するための設定
-  config.action_mailer.delivery_method = :resend
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.sendgrid.net",
+    port:                 587,
+    domain:               "lunch-stamp.onrender.com",
+    user_name:            "apikey",
+    password:             ENV["SENDGRID_API_KEY"],
+    authentication:       :plain,
+    enable_starttls_auto: true,
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
