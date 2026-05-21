@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url if logged_in?
   end
 
+  def admin_user
+    redirect_to root_url, status: :see_other unless current_user&.admin?
+  end
+
   def create_audit_log(action:, target: nil)
     return unless logged_in?
 

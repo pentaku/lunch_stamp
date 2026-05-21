@@ -20,4 +20,8 @@ Rails.application.routes.draw do
       get :export_csv
     end
   end
+
+  namespace :admin do
+    resources :users, only: [:index]
+  end
 end
