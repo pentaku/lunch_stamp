@@ -27,7 +27,7 @@
     <%= render "shared/footer" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+    <script nonce="<%= request.content_security_policy_nonce %>">
       // Turbo遷移後でもハンバーガーメニューの開閉を確実に動かす
       document.addEventListener("turbo:load", function () {
         document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(function (toggler) {
