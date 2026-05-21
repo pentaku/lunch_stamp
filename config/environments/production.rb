@@ -71,9 +71,17 @@ Rails.application.configure do
     protocol: "https",
   }
 
-  config.action_mailer.delivery_method = :sendgrid
-  config.action_mailer.sendgrid_settings = {
-    api_key: ENV["SENDGRID_API_KEY"],
+  # config/environments/production.rb
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.sendgrid.net",
+    port:                 2525,
+    domain:               "lunch-stamp.onrender.com",
+    user_name:            "apikey",
+    password:             ENV["SENDGRID_API_KEY"],
+    authentication:       :plain,
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.

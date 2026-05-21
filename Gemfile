@@ -40,5 +40,3 @@ group :test do
   gem "guard",                    "2.18.0"
   gem "guard-minitest",           "2.4.6"
 end
-
-gem "sendgrid-actionmailer"
