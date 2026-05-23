@@ -8,3 +8,28 @@
 # メインのサンプルユーザーを1人作成する
 # 本番環境で既存ユーザーを管理者に昇格させる一時処理
 # テストアカウント作成
+# 本番確認用の管理者アカウントを作成・管理者化
+admin_user = User.find_or_initialize_by(email: "lunchstamp.admin@gmail.com")
+
+if admin_user.new_record?
+  random_password = SecureRandom.urlsafe_base64(32)
+
+  admin_user.assign_attributes(
+    name: "Lunch Stamp Admin",
+    password: random_password,
+    password_confirmation: random_password,
+    activated: true,
+    activated_at: Time.current,
+    admin: true
+  )
+else
+  admin_user.assign_attributes(
+    activated: true,
+    activated_at: admin_user.activated_at || Time.current,
+    admin: true
+  )
+end
+
+admin_user.save!
+
+puts "====== [SUCCESS] admin account is ready: #{admin_user.email} ======"
